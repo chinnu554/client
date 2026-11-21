@@ -15,7 +15,6 @@ function AuthPage(){
         }
         const result = await register(data);
         alert(result.message);
-        console.log(result.success)
     }
 
     return(
