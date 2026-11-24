@@ -1,11 +1,16 @@
-import {useNavigate} from "react-router-dom";
+import {Navigate} from "react-router-dom";
+import { useNavigate } from "react-router-dom";
 import UserContext from "../../Context/UserContext/UserContext.jsx";
 import { useContext } from "react";
 
 
 function HomePage(){
-    const {logout} = useContext(UserContext);
+    const {logout,token} = useContext(UserContext);
     const navigate = useNavigate();
+
+    if(!token){
+        return <Navigate to={"/auth"} replace/>
+    }
 
     function handleLogout(){
         logout();
