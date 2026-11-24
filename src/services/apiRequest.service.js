@@ -1,10 +1,12 @@
-import API_URL from "../src/api/auth.api.js";
+import API_URL from "../api/api.js";
 
 const handleResponse = async (response) => {
   if (response.status === 204) return null;
   const result = await response.json();
   if (!response.ok) {
-    throw new Error(result.message || "Server error occured");
+    const error = new Error(result.message || "Server error occured");
+    error.status = response.status;
+    throw error;
   }
   return result;
 };
